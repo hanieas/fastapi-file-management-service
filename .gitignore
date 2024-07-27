@@ -1,1 +1,3 @@
 *.pyc
+src/.env
+/docker-data
