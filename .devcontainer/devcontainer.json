@@ -22,7 +22,7 @@
 	"customizations": {
 		"vscode": {
 			"settings": {},
-			"extensions": ["ms-python.python"]
+			"extensions": ["ms-python.python","ms-azuretools.vscode-docker"]
 		}
 	}
 
