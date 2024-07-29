@@ -29,6 +29,18 @@ services:
     networks:
       - filemanager
 
+  db-mysql:
+    image: mysql
+    container_name: mysql
+    env_file:
+      - src/.env
+    volumes:
+      - ./docker-data/data/mysql/:/var/lib/mysql/
+    ports:
+      - 3306:3306
+    networks:
+      - filemanager
+
 networks:
   filemanager:
     driver: bridge

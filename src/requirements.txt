@@ -1,2 +1,5 @@
 fastapi==0.111.1
 minio==7.2.7
+sqlalchemy==2.0.31
+pymysql==1.1.1
+alembic==1.13.2
