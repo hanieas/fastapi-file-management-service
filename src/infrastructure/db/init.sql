@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS filemanager;
+CREATE DATABASE IF NOT EXISTS filemanager_test;

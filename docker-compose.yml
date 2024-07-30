@@ -15,6 +15,9 @@ services:
       - "./src:/var/www"
     networks:
       - filemanager
+    depends_on:
+      - db-mysql
+      - minio
 
   minio:
     image: minio/minio
@@ -36,6 +39,7 @@ services:
       - src/.env
     volumes:
       - ./docker-data/data/mysql/:/var/lib/mysql/
+      - ./src/infrastructure/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 3306:3306
     networks:

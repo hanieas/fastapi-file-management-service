@@ -1,4 +1,4 @@
-from infrastructure.mysql import mysql as db
+from infrastructure.db.mysql import mysql as db
 from sqlalchemy import Column, BINARY, String, JSON, Integer, VARCHAR
 import uuid
 
