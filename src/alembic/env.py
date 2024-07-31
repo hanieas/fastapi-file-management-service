@@ -58,7 +58,6 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    print("DatabaseURL",str(setting.MYSQL_DATABASE_URL))
     connectable = create_engine(
         str(setting.MYSQL_DATABASE_URL),
         poolclass=pool.NullPool,
