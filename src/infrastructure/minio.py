@@ -2,19 +2,31 @@ from datetime import timedelta
 from core.config import config
 from minio import Minio
 from minio.helpers import ObjectWriteResult
+from typing import Type, TypeVar
+
+T = TypeVar('T', bound='MinioStorage')
 
 class MinioStorage:
-    """
-    `MinioStorage` class the main entrypoint to use minio
-    
-    ##  Example
-    ```python
-    from infrastructure.minio import MinioStorage
 
-    minioStorage = MinioStorage()
-    ```
-    """
-    def __init__(self) -> None:
+    _instance : T = None
+
+    def __new__(cls: Type[T]) -> T:
+        """
+        `MinioStorage` class the main entrypoint to use minio
+    
+        ##  Example
+        ```python
+        from infrastructure.minio import MinioStorage
+
+        minioStorage = MinioStorage()
+        ```
+        """
+        if cls._instance == None:
+            cls._instance = super().__new__(cls)
+            cls._instance.__initialize()
+        return cls._instance
+
+    def __initialize(self) -> None:
         self.client = Minio(
             config.MINIO_ENDPOINT,
             access_key = config.MINIO_ACCESS_KEY,
