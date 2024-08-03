@@ -7,6 +7,9 @@ class FileRepo(BaseRepo[File]):
     def __init__(self, db: MySQLDB) -> None:
         super().__init__(File, db)
 
+    def get_file(self, id: str) -> File:
+        return self.get(id=id)
+    
     def create_file(self, file:FileBaseDTO) -> File:
         db_file = File(
             path=file.path, credential=file.credential, content_type = file.content_type,

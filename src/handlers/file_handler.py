@@ -5,6 +5,7 @@ from handlers.base_handler import BaseHandler
 from api.response.errors import ValidatonErrors, ResponseErrors
 from fastapi.responses import JSONResponse
 import json
+from typing import Dict, Any
 
 
 class FileHandler(BaseHandler[FileService]):
@@ -33,6 +34,15 @@ class FileHandler(BaseHandler[FileService]):
         file, error = await self.service.file_upload(payload=payload)
         if error:
             return self.response.error(data={}, error=ResponseErrors.BAD_REQUEST)
+        download_url = await self.service.generate_download_link(file)
+        data = FileResponseDTO(id=file.id, path=file.path, credential=file.credential,
+                               content_type=file.content_type, detail=file.detail, download_url=download_url)
+        return self.response.success(data=data.to_dict())
+
+    async def get_file(self, id: str, query_params=Dict[str, Any]) -> JSONResponse:
+        file, error = await self.service.get_file(id=id, query_params=query_params)
+        if error:
+            return self.response.error(data={}, error=error)
         download_url = await self.service.generate_download_link(file)
         data = FileResponseDTO(id=file.id, path=file.path, credential=file.credential,
                                content_type=file.content_type, detail=file.detail, download_url=download_url)

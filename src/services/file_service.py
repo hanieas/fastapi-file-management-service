@@ -1,6 +1,6 @@
 from repositories.file_repository import FileRepo
 from dto.file_dto import UploadFilePayload
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict, Any
 from entities.file import File
 from minio import S3Error
 import os
@@ -9,6 +9,8 @@ from datetime import datetime
 import random
 from infrastructure.minio import minioStorage
 from dto.file_dto import FileBaseDTO
+from api.response.errors import Error, ResponseErrors
+
 
 class FileService:
     def __init__(self, repo: FileRepo) -> None:
@@ -29,7 +31,7 @@ class FileService:
             minioStorage.put_object(
                 bucket, filename, payload.file, length=-1, part_size=10 * 1024 * 1024)
             file = self.repo.create_file(FileBaseDTO(path=bucket + "/" + filename, content_type=payload.content_type, detail=payload.detail,
-                               size=payload.size, credential=payload.credential))
+                                                     size=payload.size, credential=payload.credential))
             return file, None
         except S3Error as err:
             return None, err
@@ -44,3 +46,15 @@ class FileService:
                 if not isinstance(value, str):
                     file.credential[key] = str(value)
             return minioStorage.get_presigned_url("GET", bucket_name=bucket_name, object_name=filename, extra_query_params=file.credential)
+
+    async def get_file(self, id: id, query_params=Dict[str, Any]) -> Tuple[Optional[File], Optional[Error]]:
+        file = self.repo.get_file(id=id)
+        if file == None:
+            return (None, Error(ResponseErrors.NOT_FOUND))
+        if file.credential:
+            for key, value in file.credential.items():
+                if not isinstance(value, str):
+                    file.credential[key] = str(value)
+            if query_params != file.credential:
+                return (None, Error(ResponseErrors.Permission_DENIED))
+        return (file, None)

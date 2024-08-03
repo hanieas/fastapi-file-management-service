@@ -14,3 +14,6 @@ class BaseRepo(Generic[T]):
         self.session.commit()
         self.session.refresh(entity)
         return entity
+    
+    def get(self, id: str) -> T:
+        return self.session.query(self.model).filter(self.model.id == id).first()
