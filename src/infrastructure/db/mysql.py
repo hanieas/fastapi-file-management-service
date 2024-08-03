@@ -22,6 +22,6 @@ class MySQLDB:
 
     @property
     def session(self):
-        return self.SessionLocal
+        return self.SessionLocal()
     
 mysql = MySQLDB()

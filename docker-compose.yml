@@ -23,12 +23,13 @@ services:
     image: minio/minio
     container_name: minio
     ports:
-      - "9001:9001"
+      - "9001:9000" # api port - should not be exposed on production
+      - "9090:9090" # console port
     volumes:
       - ./docker-data/data/minio/:/data
     env_file:
       - src/.env
-    command: server --console-address ":9001" /data
+    command: server --console-address ":9090" /data
     networks:
       - filemanager
 
