@@ -4,8 +4,9 @@ from infrastructure.db.mysql import mysql as db
 from repositories.file_repository import FileRepo
 from services.file_service import FileService
 from handlers.file_handler import FileHandler
-from dto.file_dto import FileDTO
-from typing import Annotated, Dict, Any, Optional
+from dto.file_dto import FileResponseDTO
+from typing import Optional
+from api.response import SuccessResponse, ErrorResponse
 
 router = APIRouter(
     prefix="/api/v1/file",
@@ -15,7 +16,10 @@ router = APIRouter(
 file_handler = FileHandler(service=FileService(repo=FileRepo(db=db)))
 
 
-@router.post('/upload', response_model=FileDTO)
+@router.post('/upload', response_model=SuccessResponse[FileResponseDTO], responses={
+    400: {"model": ErrorResponse},
+    422: {"model": ErrorResponse}
+})
 async def upload(
     file: UploadFile = File(...),
     size: int = Form(...),
@@ -24,7 +28,12 @@ async def upload(
 ) -> any:
     return await file_handler.upload_file(file, credential, detail, size)
 
-@router.get('/get/{id}', response_model=FileDTO)
-async def get_file(id: str, request: Request)-> JSONResponse:
+
+@router.get('/get/{id}', response_model=SuccessResponse[FileResponseDTO], responses={
+    404: {"model": ErrorResponse},
+    422: {"model": ErrorResponse},
+    403: {"model": ErrorResponse}
+})
+async def get_file(id: str, request: Request) -> JSONResponse:
     query_params = dict(request.query_params)
     return await file_handler.get_file(id, query_params=query_params)

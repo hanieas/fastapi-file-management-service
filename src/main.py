@@ -1,17 +1,11 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from api.routes import file
-
-router = APIRouter()
-
-@router.get('/ping')
-def pong():
-    return {"ping":"pong"}
+from exceptions.handler import ExceptionHandler
 
 def create_application() -> FastAPI:
-    app = FastAPI() 
-    app.include_router(router) 
-    app.include_router(file.router) 
+    app = FastAPI()
+    app.include_router(file.router)
+    ExceptionHandler(app)
     return app
 
 app = create_application()
-

@@ -9,20 +9,23 @@ class FileBaseDTO(BaseModel):
     size: int
     detail: Optional[Dict[str, Any]]
 
+
 class FileDTO(FileBaseDTO):
     id: str
+
 
 class UploadFilePayload(BaseModel):
     file: Any
     filename: str
     content_type: str
     detail: Optional[Dict[str, Any]]
-    credential: Optional[Dict[str, Any]] 
+    credential: Optional[Dict[str, Any]]
     size: int
 
     class Config:
         # Because Pydantic only understand the limited type. BinaryIO is not defined
         arbitrary_types_allowed = True
+
 
 class FileResponseDTO(BaseModel):
     id: str
@@ -31,13 +34,3 @@ class FileResponseDTO(BaseModel):
     detail:  Optional[Dict[str, Any]]
     credential:  Optional[Dict[str, Any]]
     download_url: str
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "path": self.path,
-            "content_type": self.content_type,
-            "detail": self.detail,
-            "credential": self.credential,
-            "download_url": self.download_url
-        }

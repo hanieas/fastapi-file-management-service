@@ -36,7 +36,6 @@ class MinioStorage:
         self.public_bucket = config.MINIO_PUBLIC_BUCKET
         self.private_bucket = config.MINIO_PRIVATE_BUCKET
         
-
     def bucket_exists(self, bucket_name) -> bool:
         """
         Check if the bucket exists
