@@ -46,6 +46,19 @@ services:
     networks:
       - filemanager
 
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    env_file:
+      - src/.env
+    ports:
+      - "5672:5672"   # RabbitMQ main port
+      - "15672:15672" # RabbitMQ management UI
+    volumes:
+      - ./docker-data/data/rabbitmq/:/var/lib/rabbitmq
+    networks:
+      - filemanager
+
 networks:
   filemanager:
     driver: bridge
