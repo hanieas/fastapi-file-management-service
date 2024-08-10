@@ -1,6 +1,22 @@
 from pydantic import BaseModel
 from typing import Any, Dict, Optional
+from fastapi import UploadFile
+from constants.file_extensions import FileExtension
 
+class UploadChunkDTO(BaseModel):
+    chunk_size: int
+    file: UploadFile
+    upload_id: str
+    chunk_index: int
+
+class UploadFileDTO(BaseModel):
+    upload_id: str
+    total_chunks: int
+    file_extension: FileExtension
+    total_size: int
+    content_type: str
+    detail: Optional[Dict[str, Any]]
+    credential: Optional[Dict[str, Any]]
 
 class FileBaseDTO(BaseModel):
     path: str
@@ -9,28 +25,6 @@ class FileBaseDTO(BaseModel):
     size: int
     detail: Optional[Dict[str, Any]]
 
-
 class FileDTO(FileBaseDTO):
     id: str
 
-
-class UploadFilePayload(BaseModel):
-    file: Any
-    filename: str
-    content_type: str
-    detail: Optional[Dict[str, Any]]
-    credential: Optional[Dict[str, Any]]
-    size: int
-
-    class Config:
-        # Because Pydantic only understand the limited type. BinaryIO is not defined
-        arbitrary_types_allowed = True
-
-
-class FileResponseDTO(BaseModel):
-    id: str
-    path: str
-    content_type: str
-    detail:  Optional[Dict[str, Any]]
-    credential:  Optional[Dict[str, Any]]
-    download_url: str

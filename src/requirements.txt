@@ -4,3 +4,6 @@ sqlalchemy==2.0.31
 pymysql==1.1.1
 alembic==1.13.2
 cryptography==43.0.0
+celery===5.4.0
+flower===2.0.1
+aiofiles===24.1.0

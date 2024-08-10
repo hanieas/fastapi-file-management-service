@@ -1,3 +1,5 @@
 *.pyc
 src/.env
 /docker-data
+src/supervisord.log
+src/supervisord.pid

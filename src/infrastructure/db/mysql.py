@@ -2,14 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from core.config import config
-from typing import TypeVar, Type
-
-T = TypeVar('T', bound='MySQLDB')
+from typing import Self
 
 class MySQLDB:
-    _instance: T = None
+    _instance: Self = None
 
-    def __new__(cls: Type[T]) -> T:
+    def __new__(cls: Self) -> Self:
         if cls._instance == None:
             cls._instance = super().__new__(cls)
             cls._instance.__initialize()
