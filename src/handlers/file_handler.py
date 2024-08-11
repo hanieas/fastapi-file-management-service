@@ -1,21 +1,17 @@
 from services.file_service import FileService
 from fastapi import UploadFile, status
 from constants.messages import Message
-from dto.file_dto import UploadFileDTO, UploadChunkDTO
-from api.responses.file_response import FileResponse, UploadInitResponse, UploadChunkResponse
+from dto.file_dto import UploadFileDTO, UploadChunkDTO, RetryUploadFileDTO
+from api.responses.file_response import FileResponse, UploadInitResponse, UploadChunkResponse, UploadStatusResponse
 from handlers.base_handler import BaseHandler
-from constants.errors import ValidatonErrors
 from api.responses.response import SuccessResponse, ErrorResponse
 from fastapi.responses import JSONResponse
-from fastapi.exceptions import RequestValidationError
 from exceptions.http_exception import BaseException
-import json
 from constants.file_extensions import FileExtension
-from minio.error import MinioException
 from constants.errors import Errors
 from typing import Dict, Any
 from core.config import config
-import time
+from utils import parse_json_to_dict
 
 
 class FileHandler(BaseHandler[FileService]):
@@ -40,37 +36,21 @@ class FileHandler(BaseHandler[FileService]):
         except FileNotFoundError as exc:
             return self.response.error(ErrorResponse(message=Errors.FILE_NOT_FOUND), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    async def upload_file(self, upload_id: str, total_chunks: int, total_size: int, file_extension: FileExtension,
-                          content_type: str, credential: str, detail: str, size: int = 0) -> JSONResponse:
+    async def upload_complete(self, upload_id: str, total_chunks: int, total_size: int, file_extension: FileExtension,
+                              content_type: str, credential: str, detail: str, size: int = 0) -> JSONResponse:
         if credential:
-            try:
-                credential_dict = json.loads(credential)
-            except json.JSONDecodeError:
-                raise RequestValidationError(errors=[{
-                    'loc': ('body', 'credential'),
-                    'msg': ValidatonErrors.INVALID_JSON_CREDENTIAL,
-                    'type': 'value_error'
-                }],
-                    body={"credential": "invalid_format"})
+            credential_dict = parse_json_to_dict(credential, 'credential')
         else:
             credential_dict = None
 
         if detail:
-            try:
-                detail_dict = json.loads(detail)
-            except json.JSONDecodeError:
-                raise RequestValidationError(errors=[{
-                    'loc': ('body', 'detail'),
-                    'msg': ValidatonErrors.INVALID_JSON_DETAIL,
-                    'type': 'value_error'
-                }],
-                    body={"detail": "invalid_format"})
+            credential_dict = parse_json_to_dict(detail, 'detail')
         else:
             detail_dict = None
         payload = UploadFileDTO(upload_id=upload_id, total_chunks=total_chunks, total_size=total_size, file_extension=file_extension,
                                 content_type=content_type, detail=detail_dict, credential=credential_dict, size=size)
         try:
-            file = await self.service.upload_file(payload=payload)
+            file = await self.service.upload_complete(payload=payload)
             download_url = await self.service.get_download_link(file)
             data = FileResponse(id=file.id, path=file.path, credential=file.credential,
                                 content_type=file.content_type, detail=file.detail, download_url=download_url)
@@ -78,13 +58,36 @@ class FileHandler(BaseHandler[FileService]):
         except FileNotFoundError as exc:
             return self.response.error(ErrorResponse(message=Errors.FILE_NOT_FOUND), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    async def get_file(self, id: str, query_params=Dict[str, Any]) -> JSONResponse:
+    async def get_file(self, id: str, credential=Dict[str, Any]) -> JSONResponse:
         try:
-            file = await self.service.get_file(id=id, query_params=query_params)
+            file = await self.service.get_file(id=id, credential=credential)
             download_url = await self.service.get_download_link(file)
             data = FileResponse(id=file.id, path=file.path, credential=file.credential,
                                 content_type=file.content_type, detail=file.detail, download_url=download_url)
             return self.response.success(SuccessResponse[FileResponse](data=data))
 
         except BaseException as exception:
+            return self.response.error(ErrorResponse(message=exception.message), status=exception.status)
+
+    async def get_upload_status(self, file_id: str, credential=Dict[str, Any]) -> JSONResponse:
+        try:
+            result = await self.service.get_upload_status(file_id=file_id, credential=credential)
+            return self.response.success(SuccessResponse[UploadStatusResponse](data=UploadStatusResponse(status=result)))
+        except BaseException as exception:
             return self.response.error(ErrorResponse(message=exception.message, status=exception.status))
+
+    async def retry_upload(self, file_id: str, credential: str):
+        if credential:
+            credential_dict = parse_json_to_dict(credential, 'credential')
+        else:
+            credential_dict = None
+        print("Print dictionary", dict(credential_dict))
+        payload = RetryUploadFileDTO(id=file_id, credential=credential_dict)
+        try:
+            file = await self.service.retry_upload(payload=payload)
+            download_url = await self.service.get_download_link(file)
+            data = FileResponse(id=file.id, path=file.path, credential=file.credential,
+                                content_type=file.content_type, detail=file.detail, download_url=download_url)
+            return self.response.success(content=SuccessResponse[FileResponse](data=data))
+        except BaseException as exception:
+            return self.response.error(ErrorResponse(message=exception.message), status=exception.status)

@@ -38,6 +38,20 @@ class Config:
             port=int(self.MYSQL_PORT),
             path=path
         )
+    @property
+    def CELERY_BACKEND_ENDPOINT(self):
+        if self.ENV == "testing":
+            path = self.MYSQL_TEST_DATABASE
+        else:
+            path = self.MYSQL_DATABASE
+        return MultiHostUrl.build(
+            scheme="db+mysql+pymysql",
+            username=self.MYSQL_USER,
+            password=self.MYSQL_PASSWORD,
+            host=self.MYSQL_HOST,
+            port=int(self.MYSQL_PORT),
+            path=path
+        )
 
     RABBITMQ_DEFAULT_USER = os.getenv('RABBITMQ_DEFAULT_USER', 'root')
     RABBITMQ_DEFAULT_PASS = os.getenv('RABBITMQ_DEFAULT_PASS', 'password')

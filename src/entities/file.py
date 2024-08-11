@@ -1,5 +1,6 @@
 from infrastructure.db.mysql import mysql as db
-from sqlalchemy import Column, BINARY, String, JSON, Integer, VARCHAR
+from sqlalchemy import Column, String, JSON, Integer, VARCHAR, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 import uuid
 
 
@@ -12,3 +13,4 @@ class File(db.Base):
     content_type = Column(String(32), nullable=False)
     size = Column(Integer)
     detail = Column(JSON(none_as_null=True))
+    celery_task_id = Column(String(36))

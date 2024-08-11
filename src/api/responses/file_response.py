@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
+from constants.upload_stauts import UploadStatus
+
 
 class UploadInitResponse(BaseModel):
     chunck_size: int
@@ -18,3 +20,7 @@ class FileResponse(BaseModel):
     detail:  Optional[Dict[str, Any]]
     credential:  Optional[Dict[str, Any]]
     download_url: str
+
+
+class UploadStatusResponse(BaseModel):
+    status: UploadStatus

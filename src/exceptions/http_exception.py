@@ -18,3 +18,15 @@ class FileNotFoundException(BaseException):
         message = Errors.NOT_FOUND
         status = http_status.HTTP_404_NOT_FOUND
         super().__init__(message, status)
+
+class FileUploadedException(BaseException):
+    def __init__(self) -> None:
+        message = Errors.FILE_UPLOADED_SUCCESSFULLY
+        status = http_status.HTTP_400_BAD_REQUEST
+        super().__init__(message, status)
+
+class FilePendingUploadException(BaseException):
+    def __init__(self) -> None:
+        message = Errors.FILE_PENDING_UPLOAD
+        status = http_status.HTTP_400_BAD_REQUEST
+        super().__init__(message, status)
