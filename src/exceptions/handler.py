@@ -1,7 +1,7 @@
 from fastapi import Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from api.response import ErrorResponse, response
+from api.responses.response import ErrorResponse, response
 
 class ExceptionHandler:
     def __init__(self, app):

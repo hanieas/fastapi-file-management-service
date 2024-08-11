@@ -13,6 +13,7 @@ services:
       - "8000:8000"
     volumes:
       - "./src:/var/www"
+      - "./docker-data/log/:/var/log"
     networks:
       - filemanager
     depends_on:

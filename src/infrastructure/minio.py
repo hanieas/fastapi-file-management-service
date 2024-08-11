@@ -2,18 +2,17 @@ from datetime import timedelta
 from core.config import config
 from minio import Minio
 from minio.helpers import ObjectWriteResult
-from typing import Type, TypeVar
+from typing import Self
 
-T = TypeVar('T', bound='MinioStorage')
 
 class MinioStorage:
 
-    _instance : T = None
+    _instance: Self = None
 
-    def __new__(cls: Type[T]) -> T:
+    def __new__(cls: Self) -> Self:
         """
         `MinioStorage` class the main entrypoint to use minio
-    
+
         ##  Example
         ```python
         from infrastructure.minio import MinioStorage
@@ -29,13 +28,13 @@ class MinioStorage:
     def __initialize(self) -> None:
         self.client = Minio(
             config.MINIO_ENDPOINT,
-            access_key = config.MINIO_ACCESS_KEY,
-            secret_key = config.MINIO_SECRET_KEY,
-            secure = False,
+            access_key=config.MINIO_ACCESS_KEY,
+            secret_key=config.MINIO_SECRET_KEY,
+            secure=False,
         )
         self.public_bucket = config.MINIO_PUBLIC_BUCKET
         self.private_bucket = config.MINIO_PRIVATE_BUCKET
-        
+
     def bucket_exists(self, bucket_name) -> bool:
         """
         Check if the bucket exists
@@ -47,7 +46,7 @@ class MinioStorage:
             return False
         return True
 
-    def create_bucket(self, bucket_name, location: str | None = None, object_lock: bool = False,)-> None:
+    def create_bucket(self, bucket_name, location: str | None = None, object_lock: bool = False,) -> None:
         """
         Create a bucket with given name and region and object lock
 
@@ -59,7 +58,7 @@ class MinioStorage:
         self.client.make_bucket(bucket_name, location, object_lock)
 
     def put_object(self, bucket_name, object_name, data, length, content_type="application/octet-stream", metadate=None,
-                  sse=None, progress=None, part_size=0, num_parallel_uploads=3, tags=None, retention=None, legal_hold=False) -> ObjectWriteResult:
+                   sse=None, progress=None, part_size=0, num_parallel_uploads=3, tags=None, retention=None, legal_hold=False) -> ObjectWriteResult:
         """
         Uploads data from a stream to an object in a bucket.
 
@@ -82,10 +81,10 @@ class MinioStorage:
         if not self.bucket_exists(bucket_name=bucket_name):
             self.create_bucket(bucket_name=bucket_name)
         return self.client.put_object(bucket_name, object_name, data, length, content_type, metadate, sse, progress, part_size,
-                                num_parallel_uploads, tags, retention ,legal_hold)
-    
-    def get_presigned_url(self, method, bucket_name, object_name, expires=timedelta(days=7), response_headers=None, request_date=None, 
-                        version_id=None, extra_query_params=None) -> str:
+                                      num_parallel_uploads, tags, retention, legal_hold)
+
+    def get_presigned_url(self, method, bucket_name, object_name, expires=timedelta(days=7), response_headers=None, request_date=None,
+                          version_id=None, extra_query_params=None) -> str:
         """
         Get presigned URL of an object for HTTP method, expiry time and custom
         request parameters.
@@ -108,5 +107,6 @@ class MinioStorage:
 
     def get_url(self, bucket_name, object_name):
         return f"{config.MINIO_URL}/{bucket_name}/{object_name}"
-    
+
+
 minioStorage = MinioStorage()

@@ -1,4 +1,4 @@
-from api.response import response
+from api.responses.response import response
 from typing import TypeVar, Type, Generic
 
 T = TypeVar('T')
