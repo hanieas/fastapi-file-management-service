@@ -1,0 +1,1527 @@
+{
+	"info": {
+		"_postman_id": "61934e60-d9c4-4b89-91eb-7491641702fa",
+		"name": "microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1946064",
+		"_collection_link": "https://nevis6.postman.co/workspace/Nevis-Workspace~7226aff7-af62-473c-b7f0-fb4d508aea1a/collection/1946064-61934e60-d9c4-4b89-91eb-7491641702fa?action=share&source=collection_link&creator=1946064"
+	},
+	"item": [
+		{
+			"name": "filemanager",
+			"item": [
+				{
+					"name": "upload init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{filemanager}}/upload/init/",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"upload",
+								"init",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/init/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"init",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:53:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "112"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"chunck_size\": 10485760,\n        \"upload_id\": \"f28a2047-2409-4a88-af3b-227038f6c81c\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "upload chunk",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Range",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/haniyeh/Documents/files/3/segmentaa"
+								},
+								{
+									"key": "upload_id",
+									"value": "766bed2c-549f-4586-af84-1784e6ac3781",
+									"type": "text"
+								},
+								{
+									"key": "chunk_index",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "chunk_size",
+									"value": "10485760",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{filemanager}}/upload/chunk/",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"upload",
+								"chunk",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - chunk 0",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Range",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/haniyeh/Documents/files/3/segmentaa"
+										},
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c81c",
+											"type": "text"
+										},
+										{
+											"key": "chunk_index",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "chunk_size",
+											"value": "10485760",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/chunk/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"chunk",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:55:16 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "140"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"chunk_index\": 0,\n        \"upload_id\": \"f28a2047-2409-4a88-af3b-227038f6c81c\"\n    },\n    \"message\": \"The chunk is uploaded successfully!\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "200 - chunk 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Range",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/haniyeh/Documents/files/3/segmentab"
+										},
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c81c",
+											"type": "text"
+										},
+										{
+											"key": "chunk_index",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "chunk_size",
+											"value": "10485760",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/chunk/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"chunk",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:55:42 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "140"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"chunk_index\": 1,\n        \"upload_id\": \"f28a2047-2409-4a88-af3b-227038f6c81c\"\n    },\n    \"message\": \"The chunk is uploaded successfully!\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "200 - chunk 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Range",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/haniyeh/Documents/files/3/segmentac"
+										},
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c81c",
+											"type": "text"
+										},
+										{
+											"key": "chunk_index",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "chunk_size",
+											"value": "847379",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/chunk/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"chunk",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:56:26 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "140"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"chunk_index\": 2,\n        \"upload_id\": \"f28a2047-2409-4a88-af3b-227038f6c81c\"\n    },\n    \"message\": \"The chunk is uploaded successfully!\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "422 - invalid upload_id",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Range",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/haniyeh/Documents/files/3/segmentac"
+										},
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c811",
+											"type": "text"
+										},
+										{
+											"key": "chunk_index",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "chunk_size",
+											"value": "847379",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/chunk/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"chunk",
+										""
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:56:49 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "92"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"File directory not found. Please initialize first!\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "422 - invalid chunk size",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Range",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/haniyeh/Documents/files/3/segmentac"
+										},
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c811",
+											"type": "text"
+										},
+										{
+											"key": "chunk_index",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "chunk_size",
+											"value": "84737900",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/chunk/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"chunk",
+										""
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:57:13 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "109"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        \"[body->chunk_size] input should be less than or equal to 10485760\"\n    ],\n    \"message\": \"\",\n    \"success\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "upload complete",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "upload_id",
+									"value": "9ff8949a-7525-4f32-a5ef-34320cdd60d0",
+									"type": "text"
+								},
+								{
+									"key": "total_chunks",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "file_extension",
+									"value": "jpg",
+									"type": "text"
+								},
+								{
+									"key": "content_type",
+									"value": "image/jpeg",
+									"type": "text"
+								},
+								{
+									"key": "total_size",
+									"value": "2944531",
+									"type": "text"
+								},
+								{
+									"key": "credential",
+									"value": "{\"user_id\":84793, \"page_id\":100}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{filemanager}}/upload/complete/",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"upload",
+								"complete",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - public",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c81c",
+											"type": "text"
+										},
+										{
+											"key": "total_chunks",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "file_extension",
+											"value": "jpg",
+											"type": "text"
+										},
+										{
+											"key": "content_type",
+											"value": "image/jpeg",
+											"type": "text"
+										},
+										{
+											"key": "total_size",
+											"value": "2944531",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/complete/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"complete",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:58:39 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "286"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"ef533045-5d37-4a8e-a2c6-73070e6ce152\",\n        \"path\": \"public/f28a2047-2409-4a88-af3b-227038f6c81c.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": null,\n        \"download_url\": \"http://localhost:9001/public/f28a2047-2409-4a88-af3b-227038f6c81c.jpg\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "422 - invalid file extension",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "upload_id",
+											"value": "f28a2047-2409-4a88-af3b-227038f6c81c",
+											"type": "text"
+										},
+										{
+											"key": "total_chunks",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "file_extension",
+											"value": "jpg2",
+											"type": "text"
+										},
+										{
+											"key": "content_type",
+											"value": "image/jpeg",
+											"type": "text"
+										},
+										{
+											"key": "total_size",
+											"value": "2944531",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/complete/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"complete",
+										""
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:59:10 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "349"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        \"[body->file_extension] input should be 'txt', 'jpg', 'png', 'pdf', 'mp4', 'mp3', 'mov', 'avi', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'gif', 'bmp', 'tiff', 'csv', 'json', 'xml', 'html', 'zip', 'rar', 'tar', 'gz', 'wav', 'flac', 'ogg', 'webm', 'mkv', 'heic', 'svg', 'psd', 'ai', 'eps', 'tif' or 'tga'\"\n    ],\n    \"message\": \"\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200 - private",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "upload_id",
+											"value": "d141cd65-db36-4b18-a4c1-e3e30281a51a",
+											"type": "text"
+										},
+										{
+											"key": "total_chunks",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "file_extension",
+											"value": "jpg",
+											"type": "text"
+										},
+										{
+											"key": "content_type",
+											"value": "image/jpeg",
+											"type": "text"
+										},
+										{
+											"key": "total_size",
+											"value": "2944531",
+											"type": "text"
+										},
+										{
+											"key": "credential",
+											"value": "{\"user_id\":84793, \"page_id\":100}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/complete/",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"complete",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:16:11 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "610"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"13c016c4-d049-493a-9c82-4826430f53c9\",\n        \"path\": \"private/d141cd65-db36-4b18-a4c1-e3e30281a51a.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": {\n            \"page_id\": \"100\",\n            \"user_id\": \"84793\"\n        },\n        \"download_url\": \"http://minio:9000/private/d141cd65-db36-4b18-a4c1-e3e30281a51a.jpg?page_id=100&user_id=84793&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=wTl8NuReL4eeE9vSDLmw%2F20240812%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240812T071611Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1cac78cff6895fdb8c63e6d2a9c3c5a541a78e9dc289f4f07564ffb079899b77\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "get upload status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{filemanager}}/status/0156fead-9bc3-4f0b-94de-1ab76f588dcc?user_id=84793&page_id=100",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"status",
+								"0156fead-9bc3-4f0b-94de-1ab76f588dcc"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84793"
+								},
+								{
+									"key": "page_id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/status/ef533045-5d37-4a8e-a2c6-73070e6ce152",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"status",
+										"ef533045-5d37-4a8e-a2c6-73070e6ce152"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 06:59:46 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"status\": \"SUCCESS\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/status/ef533045-5d37-4a8e-a2c6-73070e6ce151",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"status",
+										"ef533045-5d37-4a8e-a2c6-73070e6ce151"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:01:24 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "52"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"Not found!\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200 - failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/status/7b0654ee-6ecc-44e2-9317-89c93fd10621",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"status",
+										"7b0654ee-6ecc-44e2-9317-89c93fd10621"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:06:11 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"status\": \"FAILURE\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "200 - success with credential",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/status/13c016c4-d049-493a-9c82-4826430f53c9?user_id=84793&page_id=100",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"status",
+										"13c016c4-d049-493a-9c82-4826430f53c9"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84793"
+										},
+										{
+											"key": "page_id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:16:54 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"status\": \"SUCCESS\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "403 - invalid credential",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/status/13c016c4-d049-493a-9c82-4826430f53c9?user_id=84793&page_id=101",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"status",
+										"13c016c4-d049-493a-9c82-4826430f53c9"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84793"
+										},
+										{
+											"key": "page_id",
+											"value": "101"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:17:27 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "58"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"Permision denied\",\n    \"success\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{filemanager}}/get/13c016c4-d049-493a-9c82-4826430f53c9?user_id=84793&page_id=100",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"get",
+								"13c016c4-d049-493a-9c82-4826430f53c9"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "84793"
+								},
+								{
+									"key": "page_id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/get/ef533045-5d37-4a8e-a2c6-73070e6ce151",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"get",
+										"ef533045-5d37-4a8e-a2c6-73070e6ce151"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:01:48 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "52"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"Not found!\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/get/ef533045-5d37-4a8e-a2c6-73070e6ce152",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"get",
+										"ef533045-5d37-4a8e-a2c6-73070e6ce152"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:02:05 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "286"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"ef533045-5d37-4a8e-a2c6-73070e6ce152\",\n        \"path\": \"public/f28a2047-2409-4a88-af3b-227038f6c81c.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": null,\n        \"download_url\": \"http://localhost:9001/public/f28a2047-2409-4a88-af3b-227038f6c81c.jpg\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "403 - invalid credential",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/get/13c016c4-d049-493a-9c82-4826430f53c9?user_id=84793&page_id=101",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"get",
+										"13c016c4-d049-493a-9c82-4826430f53c9"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84793"
+										},
+										{
+											"key": "page_id",
+											"value": "101"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:17:58 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "58"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"Permision denied\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200 - with credential",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{filemanager}}/get/13c016c4-d049-493a-9c82-4826430f53c9?user_id=84793&page_id=100",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"get",
+										"13c016c4-d049-493a-9c82-4826430f53c9"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "84793"
+										},
+										{
+											"key": "page_id",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:18:11 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "610"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"13c016c4-d049-493a-9c82-4826430f53c9\",\n        \"path\": \"private/d141cd65-db36-4b18-a4c1-e3e30281a51a.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": {\n            \"page_id\": \"100\",\n            \"user_id\": \"84793\"\n        },\n        \"download_url\": \"http://minio:9000/private/d141cd65-db36-4b18-a4c1-e3e30281a51a.jpg?page_id=100&user_id=84793&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=wTl8NuReL4eeE9vSDLmw%2F20240812%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240812T071811Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=281783d7686abb560366dea59ac9f951f2afd230c8dfe7007e7ba38e8b2195cb\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "retry upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file_id",
+									"value": "0156fead-9bc3-4f0b-94de-1ab76f588dcc",
+									"type": "text"
+								},
+								{
+									"key": "credential",
+									"value": "{\"user_id\":84793, \"page_id\":100}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{filemanager}}/upload/retry",
+							"host": [
+								"{{filemanager}}"
+							],
+							"path": [
+								"upload",
+								"retry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 - uploaded previously",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_id",
+											"value": "ef533045-5d37-4a8e-a2c6-73070e6ce152",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/retry",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"retry"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:02:23 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "67"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"File uploaded previously!\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_id",
+											"value": "7b0654ee-6ecc-44e2-9317-89c93fd10621",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/retry",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"retry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:06:51 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "286"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"7b0654ee-6ecc-44e2-9317-89c93fd10621\",\n        \"path\": \"public/7e034a5f-3991-4b9b-a2e7-37feec9f8f42.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": null,\n        \"download_url\": \"http://localhost:9001/public/7e034a5f-3991-4b9b-a2e7-37feec9f8f42.jpg\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						},
+						{
+							"name": "403 - invalid credential",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_id",
+											"value": "0156fead-9bc3-4f0b-94de-1ab76f588dcc",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/retry",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"retry"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:22:12 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "58"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [],\n    \"message\": \"Permision denied\",\n    \"success\": false\n}"
+						},
+						{
+							"name": "200 - with credential",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file_id",
+											"value": "0156fead-9bc3-4f0b-94de-1ab76f588dcc",
+											"type": "text"
+										},
+										{
+											"key": "credential",
+											"value": "{\"user_id\":84793, \"page_id\":100}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{filemanager}}/upload/retry",
+									"host": [
+										"{{filemanager}}"
+									],
+									"path": [
+										"upload",
+										"retry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Mon, 12 Aug 2024 07:22:35 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "610"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"0156fead-9bc3-4f0b-94de-1ab76f588dcc\",\n        \"path\": \"private/9ff8949a-7525-4f32-a5ef-34320cdd60d0.jpg\",\n        \"content_type\": \"image/jpeg\",\n        \"detail\": null,\n        \"credential\": {\n            \"page_id\": \"100\",\n            \"user_id\": \"84793\"\n        },\n        \"download_url\": \"http://minio:9000/private/9ff8949a-7525-4f32-a5ef-34320cdd60d0.jpg?page_id=100&user_id=84793&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=wTl8NuReL4eeE9vSDLmw%2F20240812%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240812T072236Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8ba09dd10c7c81c4d130fe63ca6cd1b458062a3850034e81e4eb65604691077c\"\n    },\n    \"message\": \"\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "filemanager",
+			"value": "127.0.0.1:8000/api/v1/file",
+			"type": "string"
+		},
+		{
+			"key": "gateway",
+			"value": "127.0.0.1:8080/api/v1/file",
+			"type": "string"
+		}
+	]
+}
