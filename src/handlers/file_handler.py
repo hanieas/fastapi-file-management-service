@@ -73,7 +73,7 @@ class FileHandler(BaseHandler[FileService]):
             result = await self.service.get_upload_status(file_id=file_id, credential=credential)
             return self.response.success(SuccessResponse[UploadStatusResponse](data=UploadStatusResponse(status=result)))
         except BaseException as exception:
-            return self.response.error(ErrorResponse(message=exception.message, status=exception.status))
+            return self.response.error(ErrorResponse(message=exception.message), status=exception.status)
 
     async def retry_upload(self, file_id: str, credential: str):
         if credential:
