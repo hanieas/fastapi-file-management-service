@@ -58,14 +58,13 @@ class FileHandler(BaseHandler[FileService]):
         except FileNotFoundError as exc:
             return self.response.error(ErrorResponse(message=Errors.FILE_NOT_FOUND), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    async def get_file(self, id: str, credential=Dict[str, Any]) -> JSONResponse:
+    async def get_file(self, file_id: str, credential=Dict[str, Any]) -> JSONResponse:
         try:
-            file = await self.service.get_file(id=id, credential=credential)
+            file = await self.service.get_file(id=file_id, credential=credential)
             download_url = await self.service.get_download_link(file)
             data = FileResponse(id=file.id, path=file.path, credential=file.credential,
                                 content_type=file.content_type, detail=file.detail, download_url=download_url)
             return self.response.success(SuccessResponse[FileResponse](data=data))
-
         except BaseException as exception:
             return self.response.error(ErrorResponse(message=exception.message), status=exception.status)
 
@@ -81,7 +80,6 @@ class FileHandler(BaseHandler[FileService]):
             credential_dict = parse_json_to_dict(credential, 'credential')
         else:
             credential_dict = None
-        print("Print dictionary", dict(credential_dict))
         payload = RetryUploadFileDTO(id=file_id, credential=credential_dict)
         try:
             file = await self.service.retry_upload(payload=payload)

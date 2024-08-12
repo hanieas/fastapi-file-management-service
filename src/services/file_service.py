@@ -17,6 +17,7 @@ from celery.result import AsyncResult
 from tasks import celery
 from constants.upload_stauts import UploadStatus
 
+
 class FileService(BaseService[FileRepo]):
     def __init__(self, repo: FileRepo) -> None:
         super().__init__(repo=repo)
@@ -71,7 +72,7 @@ class FileService(BaseService[FileRepo]):
         if file == None:
             raise FileNotFoundException
         if file.credential and credential != file.credential:
-                raise PermissionException()
+            raise PermissionException()
         return file
 
     async def get_upload_status(self, file_id: str, credential=Dict[str, Any]) -> str:
@@ -82,12 +83,11 @@ class FileService(BaseService[FileRepo]):
     async def retry_upload(self, payload: RetryUploadFileDTO):
         file = await self.get_file(id=payload.id, credential=payload.credential)
         result = AsyncResult(file.celery_task_id)
-        print("STATUS:", result.status)
-        print("Enum STATUS:", UploadStatus.SUCCESS.value)
         if result.status == UploadStatus.SUCCESS.value:
             raise FileUploadedException()
         if result.status == UploadStatus.PENDING.value or result.status == UploadStatus.STARTED.value:
             raise FilePendingUploadException()
-        meta=celery.backend.get_task_meta(file.celery_task_id)
-        upload_file_task.apply_async(args=meta['args'], kwargs=meta['kwargs'],task_id=file.celery_task_id)
+        meta = celery.backend.get_task_meta(file.celery_task_id)
+        upload_file_task.apply_async(
+            args=meta['args'], kwargs=meta['kwargs'], task_id=file.celery_task_id)
         return file

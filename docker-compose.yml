@@ -43,7 +43,7 @@ services:
       - ./docker-data/data/mysql/:/var/lib/mysql/
       - ./src/infrastructure/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 3306:3306
+      - 3306:3306 # Dont expose ports on production
     networks:
       - filemanager
 

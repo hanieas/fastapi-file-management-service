@@ -22,7 +22,6 @@ class RetryUploadFileDTO(BaseModel):
     id: str
     credential: Optional[Dict[str, Any]]
 
-
 class FileBaseDTO(BaseModel):
     path: str
     credential: Optional[Dict[str, Any]]

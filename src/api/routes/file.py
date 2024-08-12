@@ -39,18 +39,18 @@ async def endpoint(upload_id: str = Form(...), total_chunks: int = Form(...),
                    file_extension: FileExtension = Form(...), content_type: str = Form(...),
                    detail: Optional[str] = Form(None)):
     return await file_handler.upload_complete(upload_id=upload_id, total_chunks=total_chunks, total_size=total_size,
-                                          file_extension=file_extension, content_type=content_type,
-                                          credential=credential, detail=detail)
+                                              file_extension=file_extension, content_type=content_type,
+                                              credential=credential, detail=detail)
 
 
-@router.get('/get/{id}', response_model=SuccessResponse[FileResponse], responses={
+@router.get('/get/{file_id}', response_model=SuccessResponse[FileResponse], responses={
     404: {"model": ErrorResponse},
     422: {"model": ErrorResponse},
     403: {"model": ErrorResponse}
 })
-async def endpoint(id: str, request: Request) -> JSONResponse:
+async def endpoint(file_id: str, request: Request) -> JSONResponse:
     credential = dict(request.query_params)
-    return await file_handler.get_file(id, credential=credential)
+    return await file_handler.get_file(file_id=file_id, credential=credential)
 
 
 @router.get('/status/{file_id}', response_model=SuccessResponse[UploadStatusResponse], responses={
