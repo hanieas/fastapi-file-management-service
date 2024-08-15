@@ -4,6 +4,8 @@ from fastapi.testclient import TestClient
 from main import create_application
 
 os.environ["ENV"] = "testing"
+os.environ["APP_UPLOAD_DIR"] = "/uploads"
+os.environ["APP_MAX_CHUNK_SIZE"] = "1024"
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_database():

@@ -21,7 +21,7 @@ class FileHandler(BaseHandler[FileService]):
     async def upload_initialize(self):
         upload_id = await self.service.upload_initialize()
         return self.response.success(content=SuccessResponse[UploadInitResponse](data=UploadInitResponse(
-            chunck_size=config.APP_MAX_CHUNK_SIZE,
+            chunk_size=config.APP_MAX_CHUNK_SIZE,
             upload_id=upload_id
         )))
 
@@ -44,7 +44,7 @@ class FileHandler(BaseHandler[FileService]):
             credential_dict = None
 
         if detail:
-            credential_dict = parse_json_to_dict(detail, 'detail')
+            detail_dict = parse_json_to_dict(detail, 'detail')
         else:
             detail_dict = None
         payload = UploadFileDTO(upload_id=upload_id, total_chunks=total_chunks, total_size=total_size, file_extension=file_extension,
