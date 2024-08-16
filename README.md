@@ -1,6 +1,6 @@
-# File Management Microservice
+# File Management Service
 
-[![codecov](https://codecov.io/github/hanieas/File-Management-Microservice/graph/badge.svg?token=OGUBX46W31)](https://codecov.io/github/hanieas/File-Management-Microservice)
+[![codecov](https://codecov.io/github/hanieas/fastapi-file-management-service/graph/badge.svg?token=OGUBX46W31)](https://codecov.io/github/hanieas/fastapi-file-management-service)
 
 ## Table of Contents
 1. [Introduction](#introduction)
