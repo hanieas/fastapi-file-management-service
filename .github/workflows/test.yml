@@ -1,0 +1,38 @@
+name: Run Tests and Check Coverage
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Login to DockerHub
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+    
+    - name: Build Docker images
+      run: docker-compose build
+
+    - name: Run Containers
+      run: docker-compose up -d
+
+    - name: Run tests
+      run: docker-compose run filemanager bash -c "pytest --cov=src --cov-report=term-missing --cov-fail-under=50"
+
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v4
+    #   with:
+    #     files: ./coverage.xml
+    #     name: codecov-coverage
+    #   env:
+    #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      
+    - name: Tear down Docker Compose
+      run: docker-compose down
