@@ -5,8 +5,8 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Technology Stack and Features](#technology-stack-and-features)
-3. [Why?](#why)
-4. [How?](#how)
+3. [Why a Separate File Management Service?](#why-a-separate-file-management-service)
+4. [How to Use it?](#how-to-use-it)
 5. [API Endpoints](#api-endpoints)
 6. [Contributing](#Contributing)
 
@@ -26,14 +26,14 @@ This microservice is crafted to handle all file-related operations within our ec
 - ✅ [Pytest](https://pytest.org) for testing to ensure code reliability and functionality.
 - 🐋 [Docker Compose](https://www.docker.com) for development and production.
   
-## Why?
+## Why a Separate File Management Service?
 
 1. Consolidates all file-related operations into one service, simplifying management and maintenance.
 2. Allows independent scaling of file handling capabilities without affecting other services.
 3. Facilitates easier updates and modifications related to file handling without disrupting other functionalities.
 4. Minimizes code duplication by centralizing file upload and retrieval logic, leading to cleaner and more maintainable code.
 
-## How?
+## How to Use it?
 
 1. **Complete the `.env` File**: 
     - Copy the contents of `.env.example` to a new file named `.env`.
