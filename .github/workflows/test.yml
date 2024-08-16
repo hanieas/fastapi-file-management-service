@@ -18,13 +18,13 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASS
     
     - name: Build Docker images
-      run: docker-compose build
+      run: docker compose build
 
     - name: Run Containers
-      run: docker-compose up -d
+      run: docker compose up -d
 
     - name: Run tests
-      run: docker-compose run filemanager bash -c "pytest --cov=src --cov-report=term-missing --cov-fail-under=50"
+      run: docker compose run filemanager bash -c "pytest --cov=src --cov-report=term-missing --cov-fail-under=50"
 
     # - name: Upload coverage to Codecov
     #   uses: codecov/codecov-action@v4
@@ -35,4 +35,4 @@ jobs:
     #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       
     - name: Tear down Docker Compose
-      run: docker-compose down
+      run: docker compose down
