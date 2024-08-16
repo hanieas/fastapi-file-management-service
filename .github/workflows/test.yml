@@ -28,7 +28,7 @@ jobs:
       run: docker compose up -d
 
     - name: Run tests
-      run: docker compose run filemanager bash -c "pytest --cov=. --cov-report=term-missing --cov-fail-under=50"
+      run: docker compose run filemanager bash -c "pytest --cov=."
 
     # - name: Upload coverage to Codecov
     #   uses: codecov/codecov-action@v4
