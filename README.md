@@ -1,5 +1,7 @@
 # File Management Microservice
 
+[![codecov](https://codecov.io/gh/hanieas/File-Management-Microservice/branch/main/graph/badge.svg)](https://codecov.io/gh/hanieas/File-Management-Microservice)
+
 ## Table of Contents
 1. [Introduction](#Introduction)
 2. [Technology Stack and Features]()
