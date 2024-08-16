@@ -3,10 +3,10 @@
 [![codecov](https://codecov.io/github/hanieas/File-Management-Microservice/graph/badge.svg?token=OGUBX46W31)](https://codecov.io/github/hanieas/File-Management-Microservice)
 
 ## Table of Contents
-1. [Introduction](#Introduction)
-2. [Technology Stack and Features]()
-3. [Why?](#Why?)
-4. [How?](#How?)
+1. [Introduction](#introduction)
+2. [Technology Stack and Features](#technology-stack-and-features)
+3. [Why?](#why)
+4. [How?](#how)
 4. [Configurations]()
 5. [API Endpoints]()
 6. [Contributing](#Contributing)
