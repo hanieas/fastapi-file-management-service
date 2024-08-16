@@ -16,7 +16,7 @@ jobs:
 
     - name: Decode and create .env file
       run: |
-        echo "${{ secrets.ENV_FILE_BASE64 }}" | base64 --decode > .env
+        echo "${{ secrets.ENV_FILE_BASE64 }}" | base64 --decode > src/.env
 
     - name: Login to DockerHub
       run: docker login -u $DOCKER_USER -p $DOCKER_PASS
