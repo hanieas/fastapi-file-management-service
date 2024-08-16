@@ -30,13 +30,13 @@ jobs:
     - name: Run tests
       run: docker compose run filemanager bash -c "pytest --cov=."
 
-    # - name: Upload coverage to Codecov
-    #   uses: codecov/codecov-action@v4
-    #   with:
-    #     files: ./coverage.xml
-    #     name: codecov-coverage
-    #   env:
-    #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./coverage.xml
+        name: codecov-coverage
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       
     - name: Tear down Docker Compose
       run: docker compose down
