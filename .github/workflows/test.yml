@@ -33,10 +33,8 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
-        files: ./coverage.xml
-        name: codecov-coverage
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        verbose: true
+        token: ${{ secrets.CODECOV_TOKEN }}
       
     - name: Tear down Docker Compose
       run: docker compose down
