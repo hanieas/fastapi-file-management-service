@@ -7,8 +7,7 @@
 2. [Technology Stack and Features](#technology-stack-and-features)
 3. [Why?](#why)
 4. [How?](#how)
-4. [Configurations]()
-5. [API Endpoints]()
+5. [API Endpoints](#api-endpoints)
 6. [Contributing](#Contributing)
 
 ## Introduction
@@ -66,6 +65,20 @@ This microservice is crafted to handle all file-related operations within our ec
     - The project is now up and running, accessible on port `8000`.
     - You can access the project documentation by navigating to `/docs` on your browser.
 
+## API Endpoints
+
+Here’s a quick reference guide to the available API endpoints, their methods, and what they do:
+
+| Method | URL                                         | Description                                                      |
+|--------|---------------------------------------------|------------------------------------------------------------------|
+| POST   | `/api/v1/file/upload/init/`                 | Initialize a new file upload session.                            |
+| POST   | `/api/v1/file/upload/chunk/`                | Upload a file chunk.                                             |
+| POST   | `/api/v1/file/upload/complete/`             | Complete the file upload process.                                |
+| GET    | `/api/v1/file/get/{file_id}`                | Retrieve a file by its ID.                                       |
+| GET    | `/api/v1/file/status/{file_id}`             | Check the upload status of a file.                               |
+| POST   | `/api/v1/file/upload/retry`                 | Retry uploading a file.                                          |
+
+A Postman collection export is also available for testing these endpoints. You can import it into Postman to quickly get started with API testing.
 
 ## Contributing
 
