@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This microservice is crafted to handle all file-related operations within our ecosystem efficiently. Leveraging MinIO for robust object storage and MySQL for managing file metadata, this service ensures high performance and reliability. 
+This microservice is designed to manage all file-related tasks. It uses **MinIO** for object storage and **MySQL** for managing file metadata. We support chunk uploads for handling large files efficiently, with **Celery** running background tasks to ensure smooth performance.
 
 ## Technology Stack and Features
 
@@ -28,10 +28,10 @@ This microservice is crafted to handle all file-related operations within our ec
   
 ## Why a Separate File Management Service?
 
-1. Consolidates all file-related operations into one service, simplifying management and maintenance.
-2. Allows independent scaling of file handling capabilities without affecting other services.
-3. Facilitates easier updates and modifications related to file handling without disrupting other functionalities.
-4. Minimizes code duplication by centralizing file upload and retrieval logic, leading to cleaner and more maintainable code.
+1. Centralizes file operations, making management and maintenance easier.
+2. Enables scaling file handling independently of other services.
+3. Simplifies updates and changes to file handling without impacting other parts of the system.
+4. Reduces code duplication by keeping file upload and retrieval logic in one place, resulting in cleaner code.
 
 ## How to Use it?
 
