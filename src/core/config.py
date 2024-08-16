@@ -6,9 +6,10 @@ load_dotenv()
 
 
 class Config:
-    ENV = os.getenv("ENV")
     APP_UPLOAD_DIR = os.getenv("APP_UPLOAD_DIR")
     APP_MAX_CHUNK_SIZE = int(os.getenv("APP_MAX_CHUNK_SIZE"))
+    ENV = os.getenv("ENV")
+    print("ENV:", ENV)
 
     MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT")
     MINIO_URL = os.getenv("MINIO_URL")
@@ -67,6 +68,5 @@ class Config:
             host=self.RABBITMQ_HOST,
             port=int(self.RABBITMQ_PORT),
         )
-
 
 config = Config()

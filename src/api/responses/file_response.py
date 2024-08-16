@@ -4,7 +4,7 @@ from constants.upload_stauts import UploadStatus
 
 
 class UploadInitResponse(BaseModel):
-    chunck_size: int
+    chunk_size: int
     upload_id: str
 
 
