@@ -13,8 +13,20 @@
 
 ## Introduction
 
-This microservice is crafted to efficiently handle all file-related operations within our ecosystem. Leveraging MinIO for robust object storage and MySQL for managing file metadata, this service ensures high performance and reliability. 
+This microservice is crafted to handle all file-related operations within our ecosystem efficiently. Leveraging MinIO for robust object storage and MySQL for managing file metadata, this service ensures high performance and reliability. 
 
+## Technology Stack and Features
+
+- ⚡ [**FastAPI**](https://fastapi.tiangolo.com) for the Python backend API.
+- 🧰 [SQLAlchemy](https://www.sqlalchemy.org/) for the Python SQL database interactions (ORM).
+- 🔍 [Pydantic](https://docs.pydantic.dev), used by FastAPI, for the data validation and settings management.
+- 🗄️ [MYSQL](https://www.mysql.com/) as the SQL database.
+- 🔄 [Alembic](https://alembic.sqlalchemy.org/en/latest) for database migrations.
+- 🔧 [Celery](https://docs.celeryq.dev/en/stable/) with [RabbitMQ](https://www.rabbitmq.com/) for task queue management and background processing.
+- 💾 [MinIO](https://min.io/) for scalable object storage with chunk upload support.
+- ✅ [Pytest](https://pytest.org) for testing to ensure code reliability and functionality.
+- 🐋 [Docker Compose](https://www.docker.com) for development and production.
+  
 ## Why?
 
 1. Consolidates all file-related operations into one service, simplifying management and maintenance.
