@@ -1,6 +1,6 @@
 # File Management Microservice
 
-[![codecov](https://codecov.io/gh/hanieas/File-Management-Microservice/branch/main/graph/badge.svg)](https://codecov.io/gh/hanieas/File-Management-Microservice)
+[![codecov](https://codecov.io/github/hanieas/File-Management-Microservice/graph/badge.svg?token=OGUBX46W31)](https://codecov.io/github/hanieas/File-Management-Microservice)
 
 ## Table of Contents
 1. [Introduction](#Introduction)
